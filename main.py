@@ -1,5 +1,5 @@
 import argparse
-from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer, MBartForConditionalGeneration, MBartTokenizer, NLLBertForConditionalGeneration, NLLBertTokenizer
+from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer, MBartForConditionalGeneration, MBartTokenizer, AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 def load_model_and_tokenizer(model_name):
@@ -7,14 +7,14 @@ def load_model_and_tokenizer(model_name):
     tokenizer = M2M100Tokenizer.from_pretrained(model_name)
     return model, tokenizer
 
-def load_mbartmodel_and_tokenizer(model_name):
+def load_mbart_model_and_tokenizer(model_name):  # Corrected function name
     model = MBartForConditionalGeneration.from_pretrained(model_name)
     tokenizer = MBartTokenizer.from_pretrained(model_name)
     return model, tokenizer
 
 def load_nllb_model_and_tokenizer(model_name):
-    model = NLLBertForConditionalGeneration.from_pretrained(model_name)
-    tokenizer = NLLBertTokenizer.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     return model, tokenizer
 
 
@@ -31,7 +31,7 @@ def perform_back_translation(original_texts, original_model, original_tokenizer,
     return list(set(original_texts) | set(back_translated_batch))
 
 def main():
-    parser = argparse.ArgumentParser(description="Perform translation and back-translation with M2M100 models.")
+    parser = argparse.ArgumentParser(description="Perform translation and back-translation with M2M100, Mbart and NLLB models.")
     parser.add_argument("--model_name", type=str, required=True, help="Model name for tokenizer and model loading.")
     parser.add_argument("--original_texts", nargs="+", required=True, help="Original texts for translation.")
     parser.add_argument("--back_translation_model_name", type=str, required=True, help="Model name for back translation.")
