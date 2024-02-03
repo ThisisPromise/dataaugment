@@ -1,5 +1,5 @@
 import argparse
-from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer, MBartForConditionalGeneration, MBartTokenizer, AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer, MBartForConditionalGeneration, MBart50TokenizerFast, AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 def load_model_and_tokenizer(model_name):
@@ -9,7 +9,7 @@ def load_model_and_tokenizer(model_name):
 
 def load_mbart_model_and_tokenizer(model_name):  # Corrected function name
     model = MBartForConditionalGeneration.from_pretrained(model_name)
-    tokenizer = MBartTokenizer.from_pretrained(model_name)
+    tokenizer = MBart50TokenizerFast.from_pretrained(model_name)
     return model, tokenizer
 
 def load_nllb_model_and_tokenizer(model_name):
