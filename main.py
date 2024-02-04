@@ -22,6 +22,8 @@ def main():
     parser = argparse.ArgumentParser(description="Perform translation and back-translation with Seq2Seq models.")
     parser.add_argument("--model_name", type=str, required=True, help="Model name for tokenizer and model loading.")
     parser.add_argument("--back_translation_model_name", type=str, required=True, help="Model name for back translation.")
+    parser.add_argument("--source_lang", type=str, required=True, help="Source language code.")
+    parser.add_argument("--target_lang", type=str, required=True, help="Target language code.")
     parser.add_argument("--original_texts", nargs="+", required=True, help="Original texts for translation.")
     
     args = parser.parse_args()
